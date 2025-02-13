@@ -1,4 +1,4 @@
-# server 변수 설정
+# 1. server 변수 설정
 @server = http://localhost:3000
 
 ### 2. GET 요청 보내기
