@@ -1,0 +1,36 @@
+<h1>[{{title}}] 글 {{#if (eq mode "create")}}작성{{else}}수정{{/if}}</h1>
+
+<div>
+    <form name="boardForm" method="post" {{#if (eq mode "create" )}}action="/write" {{else}}action="/modify" {{/if}}>   <!-- mode에 따라 폼이 반영되는 URL 변경 -->
+        <!-- 수정 모드인 때는 폼 통해 id값 전송 -->
+        {{#if (eq mode "modify")}}
+        <input type="hidden" name="id" value="{{post._id}}" />
+        {{/if}}
+
+        <div>
+            <label>제목</label>
+            <input type="text" name="title" placeholder="제목을 넣어주세요" value="{{post.title}}" />    <!-- 수정 모드인 경우 제목 넣어줌 -->
+        </div>
+        <div>
+            <label>이름</label>
+            <input type="text" name="writer" placeholder="이름을 넣어주세요" value="{{post.writer}}" />  <!-- 수정 모드인 경우 이름 넣어줌 -->
+        </div>
+        <div>
+            <label>비밀번호</label>
+            <input type="password" name="password" placeholder="비밀번호를 넣어주세요" />
+        </div>
+
+        <!-- 수정 모드인 경우 본문에 내용 채워줌 -->
+        <div>
+            <label>본문을 입력하세요</label><br />
+            <textarea placeholder="본문" name="content" cols="50" rows="10">{{post.content}}</textarea>
+            <br />
+        </div>
+
+        {{!-- 버튼 영역 --}}
+        <div>
+            <button type="submit">저장</button>
+            <button type="button" onclick="location.href='/'">취소</button>
+        </div>
+    </form>
+</div>
